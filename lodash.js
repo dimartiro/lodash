@@ -4510,7 +4510,6 @@
      *
      * @static
      * @memberOf _
-     * @alias include
      * @category Collection
      * @param {Array|Object|string} collection The collection to search.
      * @param {*} target The value to check for.
@@ -4553,6 +4552,45 @@
       return getIndexOf(collection, target, fromIndex) > -1;
     }
 
+
+    /**
+     * Checks if `targetCollection` is present in `collection` using strict equality for
+     * comparisons, i.e. `===`
+     *
+     * @static
+     * @memberOf _
+     * @category Collection
+     * @param {Array|Object} collection The collection to search.
+     * @param {Array|Object} target The value to check for.
+     * @returns {boolean} Returns `true` if a matching element is found, else `false`.
+     * @example
+     *
+     *
+     * _.includes({ 'name': 'fred', 'age': 40 }, { 'name': 'fred' });
+     * // => true
+     *
+     * _.includes([1,2,3], [2,3]);
+     * // => true
+     *
+     * _.includes([1,2,3], [3,2]);
+     * // => true
+     *
+     */
+    function includes(collection, targetCollection){
+      if(Array.isArray(collection) && Array.isArray(targetCollection)){
+        return _.intersection(collection,targetCollection).length === targetCollection.length
+      }
+      if(collection.constructor === {}.constructor && targetCollection.constructor === {}.constructor){
+        result = true
+        _.forEach(targetCollection, function(v,k){
+          if(v != collection[k]){
+            result = false
+            return
+          }
+        })
+        return result
+      }
+    }
     /**
      * Creates an object composed of keys generated from the results of running
      * each element of `collection` through `iterator`. The corresponding value
@@ -9259,6 +9297,7 @@
     lodash.clone = clone;
     lodash.cloneDeep = cloneDeep;
     lodash.contains = contains;
+    lodash.includes = includes;
     lodash.endsWith = endsWith;
     lodash.escape = escape;
     lodash.escapeRegExp = escapeRegExp;
