@@ -4591,7 +4591,7 @@
       }
       if(collection.constructor === {}.constructor && targetCollection.constructor === {}.constructor){
         return _.reduce(targetCollection, function(result, value, key){
-          return result && (value == collection[key])
+          return result && (value === collection[key])
         },true)
       }
       return _.contains(collection, targetCollection, fromIndex)
