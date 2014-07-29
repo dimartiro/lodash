@@ -4581,12 +4581,16 @@
         return _.intersection(collection,targetCollection).length === targetCollection.length
       }
       if(collection.constructor === {}.constructor && targetCollection.constructor === {}.constructor){
-        return _.reduce(targetCollection, function(result, value, key){
-          return result && (value === collection[key])
-        },true)
+        result = true
+        _.forEach(targetCollection, function(v,k){
+          if(v != collection[k]){
+            result = false
+            return
+          }
+        })
+        return result
       }
     }
-
     /**
      * Creates an object composed of keys generated from the results of running
      * each element of `collection` through `iterator`. The corresponding value
@@ -9293,6 +9297,7 @@
     lodash.clone = clone;
     lodash.cloneDeep = cloneDeep;
     lodash.contains = contains;
+    lodash.includes = includes;
     lodash.endsWith = endsWith;
     lodash.escape = escape;
     lodash.escapeRegExp = escapeRegExp;
