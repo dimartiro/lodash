@@ -4560,32 +4560,23 @@
      * @static
      * @memberOf _
      * @category Collection
-     * @param {Array|Object|string} collection The collection to search.
-     * @param {*} target The value to check for.
-     * @param {number} [fromIndex=0] The index to search from.
+     * @param {Array|Object} collection The collection to search.
+     * @param {Array|Object} target The value to check for.
      * @returns {boolean} Returns `true` if a matching element is found, else `false`.
      * @example
      *
-     * _.include([1, 2, 3], 1);
+     *
+     * _.includes({ 'name': 'fred', 'age': 40 }, { 'name': 'fred' });
      * // => true
      *
-     * _.include([1, 2, 3], 1, 2);
-     * // => false
-     *
-     * _.include({ 'name': 'fred', 'age': 40 }, 'fred');
+     * _.includes([1,2,3], [2,3]);
      * // => true
      *
-     * _.include('pebbles', 'eb');
-     * // => true
-     *
-     * _.include({ 'name': 'fred', 'age': 40 }, { 'name': 'fred' });
-     * // => true
-     *
-     * _.include([1,2,3], [2,3]);
+     * _.includes([1,2,3], [3,2]);
      * // => true
      *
      */
-    function include(collection, targetCollection, fromIndex){
+    function includes(collection, targetCollection, fromIndex){
       if(Array.isArray(collection) && Array.isArray(targetCollection)){
         return _.intersection(collection,targetCollection).length === targetCollection.length
       }
@@ -4594,7 +4585,6 @@
           return result && (value === collection[key])
         },true)
       }
-      return _.contains(collection, targetCollection, fromIndex)
     }
 
     /**
@@ -9303,7 +9293,6 @@
     lodash.clone = clone;
     lodash.cloneDeep = cloneDeep;
     lodash.contains = contains;
-    lodash.include = include;
     lodash.endsWith = endsWith;
     lodash.escape = escape;
     lodash.escapeRegExp = escapeRegExp;
@@ -9376,6 +9365,7 @@
     lodash.foldl = reduce;
     lodash.foldr = reduceRight;
     lodash.head = first;
+    lodash.include = contains;
     lodash.inject = reduce;
 
     mixin(lodash, (function() {
