@@ -4577,6 +4577,9 @@
      *
      */
     function includes(collection, targetCollection){
+      if(!collection || !targetCollection){
+        return false
+      }
       if(Array.isArray(collection) && Array.isArray(targetCollection)){
         return _.intersection(collection,targetCollection).length === targetCollection.length
       }
