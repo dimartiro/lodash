@@ -4577,7 +4577,7 @@
      *
      */
     function includes(collection, targetCollection){
-      if(!collection || !targetCollection){
+      if(!collection || !targetCollection || _.isEmpty(targetCollection)){
         return false
       }
       if(Array.isArray(collection) && Array.isArray(targetCollection)){
